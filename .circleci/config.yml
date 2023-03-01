@@ -17,6 +17,12 @@ jobs:
       - run:
           name: "Say hello"
           command: "echo Hello, World!"
+  say-hello-only-in-test:
+    docker:
+      - image: circleci/base:stable # the primary container, where your job's commands are run
+    steps:
+      - checkout # check out the code in the project directory
+      - run: echo "hello world to Test Branch" # run the `echo` command
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
@@ -24,3 +30,7 @@ workflows:
   say-hello-workflow:
     jobs:
       - say-hello
+      - say-hello-only-in-test:
+          filters:
+            branches:
+              only: test
