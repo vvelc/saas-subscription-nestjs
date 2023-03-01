@@ -19,7 +19,7 @@ jobs:
           command: "echo Hello, World!"
   say-hello-only-in-test:
     docker:
-      - image: circleci/base:stable # the primary container, where your job's commands are run
+      - image: cimg/base:stable # the primary container, where your job's commands are run
     steps:
       - checkout # check out the code in the project directory
       - run: echo "hello world to Test Branch" # run the `echo` command
